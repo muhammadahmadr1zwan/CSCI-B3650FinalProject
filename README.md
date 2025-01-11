@@ -1,84 +1,128 @@
-# NBA Salaries Analysis 2022-2023: Uncovering Performance Insights with Data Mining
+# **NBA Salaries Analysis 2022-2023: Data Mining Insights**
 
-This project analyzes NBA player salaries for the 2022-2023 season using data mining techniques. It includes preprocessing, exploratory data analysis (EDA), and model training.
+This project explores the relationships between NBA player performance metrics and salaries for the 2022-2023 season using data mining techniques. It highlights key patterns, correlations, and outliers while leveraging machine learning models for predictive analysis.
 
-## Directory Structure
+---
 
-- `data/`: Contains the datasets.
-  - `nba_original.csv`: The original dataset with all player stats and salaries.
-  - `nba_updated.csv`: The updated dataset after initial cleaning.
-  - `nba_normalized.csv`: The normalized dataset for model training.
-  
-- `src/`: Modularized scripts for different components of the analysis.
-  - `data_preprocessing.py`: Handles data loading, cleaning, and normalization.
-  - `eda.py`: Contains functions for exploratory data analysis, including visualizations.
-  - `model_training.py`: Implements Decision Tree and SVM models.
-  - `evaluation.py`: Provides evaluation metrics for trained models.
+## **Directory Structure**
 
-- `main.py`: The main script to orchestrate the entire pipeline, from data loading to model evaluation.
+- **`data/`**: Contains datasets:
+  - `nba_original.csv`: Original dataset with player stats and salaries.
+  - `nba_updated.csv`: Cleaned and updated dataset.
+  - `nba_normalized.csv`: Dataset normalized for modeling.
 
-## How to Run the Project
+- **`src/`**: Modular scripts:
+  - `data_preprocessing.py`: Data loading, cleaning, and normalization.
+  - `eda.py`: Exploratory data analysis.
+  - `model_training.py`: Machine learning models (Decision Tree and SVM).
+  - `evaluation.py`: Metrics and model comparison.
+
+- **`main.py`**: Script orchestrating the entire pipeline.
+
+---
+
+## **How to Run the Project**
 
 1. **Install Required Libraries**:
-   Ensure the following Python libraries are installed:
-   - `pandas`
-   - `numpy`
-   - `matplotlib`
-   - `seaborn`
-   - `scikit-learn`
-
-   You can install these using:
    ```bash
    pip install pandas numpy matplotlib seaborn scikit-learn
    ```
 
-2. **Run the Main Script**:
-   Execute `main.py` to run the full pipeline:
+2. **Execute the Main Script**:
    ```bash
    python main.py
    ```
 
-   This will:
-   - Load and preprocess the dataset.
-   - Perform exploratory data analysis (EDA).
-   - Train models (Decision Tree and SVM).
-   - Evaluate models and display results.
+---
 
-## Project Workflow
+## **Workflow**
 
-1. **Data Preprocessing**:
-   - Handles missing values.
-   - Normalizes numerical features like `PTS`, `TRB`, and `Salary`.
+### **1. Data Preprocessing**
+- **Challenges**:
+  - Missing values in features like FG%, TS%.
+  - Outliers in Salary, Blocks, and Assists.
+  - High skewness in numerical data.
+- **Solutions**:
+  - Imputed missing values or removed rows with critical gaps.
+  - Preserved outliers for context but tracked their impact on models.
+  - Standardized numerical features for consistency.
 
-2. **Exploratory Data Analysis (EDA)**:
-   - Visualizes correlations between variables using heatmaps.
-   - Highlights outliers in salary and key performance metrics.
-   - Explores distributions of player stats like `PTS` and `AST`.
+---
 
-3. **Model Training**:
-   - Trains two models:
-     - **Decision Tree**: For interpretable rules and non-linear relationships.
-     - **SVM**: For accuracy and robustness in high-dimensional data.
+### **2. Exploratory Data Analysis (EDA)**
 
-4. **Evaluation**:
-   - Measures model performance using metrics like:
-     - Mean Squared Error (MSE)
-     - \(R^2\) Score
+#### **Dataset Overview**
+- Rows: 467  
+- Columns: 52  
+- Key Statistics:
+  - Mean Salary: $8.42M
+  - Max Salary: $48.07M
+  - Mean Points per Game: 9.13
 
-## Results Summary
+#### **Correlation Heatmap**
+- Shows relationships between features like Salary, PTS, and MP:
+  ![Screenshot 2025-01-10 184911](https://github.com/user-attachments/assets/122dbe10-f51e-470b-b947-52cafc370019)
 
-| Model              | MSE   | \(R^2\)    |
-|--------------------|-------|-----------|
-| **Decision Tree**  | 0.092 | 0.936     |
-| **SVM**            | 0.052 | 0.964     |
+#### **Box Plot: Salary Outliers**
+- Highlights salary outliers exceeding $40M:
+  ![image](https://github.com/user-attachments/assets/47345011-d387-4657-ac28-a20408e8e921)
 
-## Insights
+#### **Skewness in Data**
+Visualizes the distributions of key features:
+- **Positively Skewed**: Salary, Free Throws, Blocks.
+- **Symmetrical**: Games Played (GP), Personal Fouls (PF).
+- **Negatively Skewed**: FG%, TS%.
 
-- **Key Factors**:
-  - Player performance metrics (`PTS`, `MP`) strongly correlate with salary.
-  - Guards exhibit the most variability due to diverse roles.
+  ![image](https://github.com/user-attachments/assets/603d5468-5e76-479c-8a98-7531e0ec930c)
 
-- **Applications**:
-  - Optimize player contracts based on performance metrics.
-  - Predict draft success and future salaries.
-  - Engage fans with interpretable salary insights.
+#### **Outliers**
+Outliers in key features:
+- Salary: 48 extreme data points.
+- Free Throws: 41 outliers.
+- Blocks: 22 outliers.
+
+  ![image](https://github.com/user-attachments/assets/0ab39f0e-e18c-48f3-8771-8b4b08a97b78)
+
+---
+
+### **3. Model Training**
+- **Decision Tree**:
+  - Interpretable and efficient for small datasets.
+  - Handles non-linear relationships.
+- **Support Vector Machine (SVM)**:
+  - Superior accuracy for high-dimensional datasets.
+  - Robust with regularization and kernel functions.
+
+---
+
+### **4. Model Evaluation**
+
+| Model              | Split | MSE   | \(R^2\)    |
+|--------------------|-------|-------|-----------|
+| **Decision Tree**  | 80-20 | 0.092 | 0.936     |
+| **SVM**            | 80-20 | 0.052 | 0.964     |
+
+#### **Decision Tree Visualization**
+Displays interpretable decision-making rules.
+
+---
+
+### **5. Insights**
+
+#### **Key Takeaways**:
+- Strong correlation between Salary and performance metrics like Points Per Game (PTS) and Minutes Played (MP).
+- Guards display the most variability due to diverse roles.
+
+#### **Applications**:
+- **Salary Optimization**: Align contracts with player contributions.
+- **Draft Strategy**: Predict high-potential players using metrics.
+- **Fan Engagement**: Provide interpretable analytics for better transparency.
+
+---
+
+## **Conclusion**
+- **Best Model**: Support Vector Machine (SVM)
+  - Excels in accuracy and robustness.
+  - Suitable for predictive analytics and salary forecasting.
+- **Decision Tree**:
+  - Valuable for interpretability and quick insights.
