@@ -1,6 +1,6 @@
 # **NBA Salaries Analysis 2022-2023: Data Mining Insights**
 
-This project explores the relationships between NBA player performance metrics and salaries for the 2022-2023 season using data mining techniques. It highlights key patterns, correlations, and outliers while leveraging machine learning models for predictive analysis.
+This project explores the relationships between NBA player performance metrics and salaries for the 2022-2023 season using data mining techniques. It highlights key patterns, correlations, and outliers while leveraging machine learning models for predictive analysis. I completed this project with my teammates Mahmoud Awad and Kevin Bethel II.
 
 ---
 
